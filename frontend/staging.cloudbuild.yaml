@@ -23,7 +23,7 @@ steps:
   args: [ 
     'build', 
     '-t', 
-    'gcr.io/$PROJECT_ID/frontend-staging:${TAG_NAME}', 
+    'gcr.io/$PROJECT_ID/frontend-staging:${COMMIT_SHA}', 
     'gcr.io/$PROJECT_ID/frontend-staging:latest', 
     '.' ]
 
@@ -32,6 +32,6 @@ steps:
   dir: 'frontend'
   args: [
     'push', 
-    'gcr.io/$PROJECT_ID/frontend-staging:${TAG_NAME}',
+    'gcr.io/$PROJECT_ID/frontend-staging:${COMMIT_SHA}',
     'gcr.io/$PROJECT_ID/frontend-stagingf:latest']
   
