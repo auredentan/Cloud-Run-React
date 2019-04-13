@@ -2,24 +2,24 @@ steps:
   
 - id: 'Install node_modules'
   name: 'gcr.io/cloud-builders/yarn'
-  dir: 'frontend'
+  dir: 'simple-webapp'
   args: [ 'install' ]
 
 - id: 'Build'
   name: 'gcr.io/cloud-builders/yarn'
-  dir: 'frontend'
+  dir: 'simple-webapp'
   args: [ 'build' ]
 
 - id: 'Test'
   name: 'gcr.io/cloud-builders/yarn'
-  dir: 'frontend'
+  dir: 'simple-webapp'
   args: [ 'test' ]
   env:
   - 'CI=true'
 
 - id: 'Build image'
   name: 'gcr.io/cloud-builders/docker'
-  dir: 'frontend'
+  dir: 'simple-webapp'
   args: [ 
     'build', 
     '-t', 
@@ -30,14 +30,14 @@ steps:
 
 - id: 'Push tagged image'
   name: 'gcr.io/cloud-builders/docker'
-  dir: 'frontend'
+  dir: 'simple-webapp'
   args: [
     'push', 
     'gcr.io/$PROJECT_ID/simple-webapp-prod:${TAG_NAME}']
   
 - id: 'Push latest image'
   name: 'gcr.io/cloud-builders/docker'
-  dir: 'frontend'
+  dir: 'simple-webapp'
   args: [
     'push', 
     'gcr.io/$PROJECT_ID/simple-webapp-prod:latest']
