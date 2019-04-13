@@ -45,4 +45,4 @@ steps:
 - id: 'Deploy on cloud run'
   name: 'gcr.io/cloud-builders/gcloud'
   dir: 'frontend'
-  args: ['beta', 'run', 'deploy', '--image', 'gcr.io/$PROJECT_ID/frontend-staging:${COMMIT_SHA}', '--region', 'us-central1']
+  args: ['beta', 'run', 'deploy', 'frontend-staging','--image', 'gcr.io/$PROJECT_ID/frontend-staging:${COMMIT_SHA}', '--region', 'us-central1']
