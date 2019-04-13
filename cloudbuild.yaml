@@ -1,9 +1,0 @@
-steps:
-- name: 'gcr.io/cloud-builders/docker'
-  args: [ 'build', '-t', 'gcr.io/$PROJECT_ID/react-image:$COMMIT_SHA', '.' ]
-- name: 'gcr.io/cloud-builders/gcloud'
-  args: ['beta', 'run', 'deploy', 'react-hel', '--image', 'gcr.io/$PROJECT_ID/react-image', '--region', 'us-central1']
-- name: 'gcr.io/cloud-builders/npm'
-  args: ['run', 'deploy']
-
-
