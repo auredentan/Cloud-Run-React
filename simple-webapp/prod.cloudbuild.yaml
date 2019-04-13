@@ -41,3 +41,13 @@ steps:
   args: [
     'push', 
     'gcr.io/$PROJECT_ID/simple-webapp-prod:latest']
+
+- id: 'Deploy on cloud run'
+  name: 'gcr.io/cloud-builders/gcloud'
+  dir: 'simple-webapp'
+  args: [
+    'beta', 
+    'run', 
+    'deploy', 'simple-webapp-prod',
+    '--image', 'gcr.io/$PROJECT_ID/simple-webapp-prod:${TAG_NAME}', 
+    '--region', 'us-central1']
