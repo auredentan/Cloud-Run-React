@@ -28,14 +28,14 @@ steps:
     'gcr.io/$PROJECT_ID/frontend-prod:latest', 
     '.' ]
 
-- id: 'Push image ${TAG_NAME}'
+- id: 'Push tagged image'
   name: 'gcr.io/cloud-builders/docker'
   dir: 'frontend'
   args: [
     'push', 
     'gcr.io/$PROJECT_ID/frontend-prod:${TAG_NAME}']
   
-- id: 'Push image latest'
+- id: 'Push latest image'
   name: 'gcr.io/cloud-builders/docker'
   dir: 'frontend'
   args: [

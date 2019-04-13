@@ -23,19 +23,19 @@ steps:
   args: [ 
     'build', 
     '-t', 
-    'gcr.io/$PROJECT_ID/frontend-staging:${TAG_NAME}', 
+    'gcr.io/$PROJECT_ID/frontend-staging:${COMMIT_SHA}', 
     '-t',
     'gcr.io/$PROJECT_ID/frontend-staging:latest', 
     '.' ]
 
-- id: 'Push image ${TAG_NAME}'
+- id: 'Push tagged image'
   name: 'gcr.io/cloud-builders/docker'
   dir: 'frontend'
   args: [
     'push', 
-    'gcr.io/$PROJECT_ID/frontend-staging:${TAG_NAME}']
+    'gcr.io/$PROJECT_ID/frontend-staging:${COMMIT_SHA}']
   
-- id: 'Push image latest'
+- id: 'Push latest image'
   name: 'gcr.io/cloud-builders/docker'
   dir: 'frontend'
   args: [
