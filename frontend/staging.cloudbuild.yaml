@@ -41,3 +41,8 @@ steps:
   args: [
     'push', 
     'gcr.io/$PROJECT_ID/frontend-staging:latest']
+
+- id: 'Deploy on cloud run'
+  name: 'gcr.io/cloud-builders/gcloud'
+  dir: 'frontend'
+  args: [ 'beta', 'run', 'deploy', '--image', 'gcr.io/$PROJECT_ID/frontend-staging:${COMMIT_SHA}']
