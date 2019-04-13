@@ -10,7 +10,7 @@ steps:
   dir: 'simple-webapp/client'
   args: [ 'build' ]
 
-- id: 'Test'
+- id: 'Test front'
   name: 'gcr.io/cloud-builders/yarn'
   dir: 'simple-webapp/client'
   args: [ 'test' ]
