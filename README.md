@@ -7,4 +7,3 @@
 
 ## To come
 * Cloud functions (with versionning)
-
