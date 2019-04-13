@@ -1,6 +1,5 @@
-
 steps:
-
+  
 - id: 'Install node_modules'
   name: 'gcr.io/cloud-builders/yarn'
   dir: 'frontend'
