@@ -33,5 +33,5 @@ steps:
   args: [
     'push', 
     'gcr.io/$PROJECT_ID/frontend-staging:${TAG_NAME}',
-    'gcr.io/$PROJECT_ID/frontend-staging:latest']
+    'gcr.io/$PROJECT_ID/frontend-stagingf:latest']
   
