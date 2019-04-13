@@ -23,7 +23,8 @@ steps:
   args: [ 
     'build', 
     '-t', 
-    'gcr.io/$PROJECT_ID/frontend-staging:${COMMIT_SHA}', 
+    'gcr.io/$PROJECT_ID/frontend-staging:${COMMIT_SHA}',
+    '-t', 
     'gcr.io/$PROJECT_ID/frontend-staging:latest', 
     '.' ]
 

@@ -24,6 +24,7 @@ steps:
     'build', 
     '-t', 
     'gcr.io/$PROJECT_ID/frontend-prod:${TAG_NAME}', 
+    '-t',
     'gcr.io/$PROJECT_ID/frontend-prod:latest', 
     '.' ]
 
