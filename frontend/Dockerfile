@@ -6,7 +6,7 @@ COPY ./package.json ./package.json
 RUN yarn install
 
 COPY . .
-RUN yarn run build
+RUN yarn build
 
 FROM nginx:alpine
 COPY nginx.conf /etc/nginx/conf.d/default.conf

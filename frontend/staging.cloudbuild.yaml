@@ -2,19 +2,19 @@
 steps:
 
 - id: 'Install node_modules'
-  name: 'gcr.io/cloud-builders/npm'
+  name: 'gcr.io/cloud-builders/yarn'
   dir: 'frontend'
-  args: [ 'run', 'install' ]
+  args: [ 'install' ]
 
 - id: 'Build'
-  name: 'gcr.io/cloud-builders/npm'
+  name: 'gcr.io/cloud-builders/yarn'
   dir: 'frontend'
-  args: [ 'run', 'build']
+  args: [ 'build']
 
 - id: 'Test'
-  name: 'gcr.io/cloud-builders/npm'
+  name: 'gcr.io/cloud-builders/yarn'
   dir: 'frontend'
-  args: [ 'run', 'test']
+  args: [ 'test']
 
 - id: 'Build image'
   name: 'gcr.io/cloud-builders/docker'
