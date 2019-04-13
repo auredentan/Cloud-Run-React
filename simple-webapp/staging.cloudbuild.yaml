@@ -1,0 +1,47 @@
+steps:
+  
+- id: 'Install node_modules'
+  name: 'gcr.io/cloud-builders/yarn'
+  dir: 'frontend'
+  args: [ 'install' ]
+
+- id: 'Build'
+  name: 'gcr.io/cloud-builders/yarn'
+  dir: 'frontend'
+  args: [ 'build' ]
+
+- id: 'Test'
+  name: 'gcr.io/cloud-builders/yarn'
+  dir: 'frontend'
+  args: [ 'test' ]
+  env:
+  - 'CI=true'
+
+- id: 'Build image'
+  name: 'gcr.io/cloud-builders/docker'
+  dir: 'frontend'
+  args: [ 
+    'build', 
+    '-t', 'gcr.io/$PROJECT_ID/simple-webapp-staging:${COMMIT_SHA}', 
+    '-t', 'gcr.io/$PROJECT_ID/simple-webapp-staging:latest', 
+    '.' ]
+
+- id: 'Push tagged image'
+  name: 'gcr.io/cloud-builders/docker'
+  dir: 'frontend'
+  args: [ 'push', 'gcr.io/$PROJECT_ID/simple-webapp-staging:${COMMIT_SHA}']
+  
+- id: 'Push latest image'
+  name: 'gcr.io/cloud-builders/docker'
+  dir: 'frontend'
+  args: [ 'push', 'gcr.io/$PROJECT_ID/simple-webapp-staging:latest']
+
+- id: 'Deploy on cloud run'
+  name: 'gcr.io/cloud-builders/gcloud'
+  dir: 'frontend'
+  args: [
+    'beta', 
+    'run', 
+    'deploy', 'simple-webapp-staging',
+    '--image', 'gcr.io/$PROJECT_ID/simple-webapp-staging:${COMMIT_SHA}', 
+    '--region', 'us-central1']
