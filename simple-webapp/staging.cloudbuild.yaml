@@ -2,17 +2,17 @@ steps:
   
 - id: 'Install node_modules'
   name: 'gcr.io/cloud-builders/yarn'
-  dir: 'simple-webapp'
+  dir: 'simple-webapp/client'
   args: [ 'install' ]
 
 - id: 'Build'
   name: 'gcr.io/cloud-builders/yarn'
-  dir: 'simple-webapp'
+  dir: 'simple-webapp/client'
   args: [ 'build' ]
 
 - id: 'Test'
   name: 'gcr.io/cloud-builders/yarn'
-  dir: 'simple-webapp'
+  dir: 'simple-webapp/client'
   args: [ 'test' ]
   env:
   - 'CI=true'
