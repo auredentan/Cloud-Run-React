@@ -21,3 +21,9 @@ steps:
   name: 'gcr.io/cloud-builders/docker'
   dir: 'frontend'
   args: [ 'build', '-t', 'gcr.io/$PROJECT_ID/frontend-prod:${COMMIT_SHA}', '.' ]
+
+- id: 'Push image'
+  name: 'gcr.io/cloud-builders/docker'
+  dir: 'frontend'
+  args: ['push', 'gcr.io/$PROJECT_ID/frontend-prod:${COMMIT_SHA}']
+  
