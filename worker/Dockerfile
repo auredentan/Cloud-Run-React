@@ -4,17 +4,16 @@ FROM python:3.7.3-slim
 
 # Copy local code to the container image.
 WORKDIR /app
-COPY server/requirements.txt server/requirements.txt
+COPY requirements.txt requirements.txt
 
 # Install production dependencies.
-RUN pip install -r server/requirements.txt
+RUN pip install -r requirements.txt
 
-COPY server server
+COPY . .
 
-COPY client/build client/build
 # Run the web service on container startup. Here we use the gunicorn
 # webserver, with one worker process and 8 threads.
 # For environments with multiple CPU cores, increase the number of workers
 # to be equal to the cores available.
 
-CMD cd server && exec gunicorn $RELOAD --bind :$PORT --workers 1 --threads 8 app:app
+CMD exec gunicorn --bind :$PORT --workers 1 --threads 8 app:app

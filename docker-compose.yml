@@ -1,0 +1,38 @@
+version: '3'
+
+services:
+
+  simple-webapp:
+    build:
+      context: ./simple-webapp
+      dockerfile: Dockerfile
+    environment:
+      - PORT=8080
+      - PUBSUB_EMULATOR_HOST=pubsub:8538
+      - PUBSUB_PROJECT_ID=test
+      - RELOAD=--reload
+    volumes: 
+      - ./simple-webapp:/app
+    ports:
+      - 8080:8080
+    depends_on: 
+      - pubsub
+  
+  worker:
+    build:
+      context: ./worker
+      dockerfile: Dockerfile
+    environment:
+      - PORT=8081
+    ports:
+     - 8081:8081
+
+  pubsub:
+    image: google/cloud-sdk:latest
+    volumes:
+      - ./data/pubsub:/mnt/data/pubsub
+    ports:
+      - "8538:8538"
+    command:
+      /bin/bash -c
+        "gcloud config set project emulator && gcloud beta emulators pubsub start --data-dir /mnt/data/pubsub --host-port 0.0.0.0:8538"
